@@ -1,8 +1,7 @@
-// src/components/SignUp.jsx
 import { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { useNavigate, Link } from "react-router-dom"; // Import useNavigate and Link
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -60,7 +59,7 @@ const SignUp = () => {
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">
-          Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a>
+          Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login</Link> {/* Use Link instead of a */}
         </p>
       </div>
     </div>
