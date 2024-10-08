@@ -1,8 +1,7 @@
-// src/components/Login.jsx
 import { useState } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { useNavigate, Link } from "react-router-dom"; // Import useNavigate and Link
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -53,7 +52,7 @@ const Login = () => {
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">
-          Don't have an account? <a href="/signup" className="text-blue-500 hover:underline">Sign Up</a>
+          Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
         </p>
       </div>
     </div>
