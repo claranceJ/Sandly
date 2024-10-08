@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div>
       {user ? (
-        <div className="min-h-screen bg-slate-500flex flex-col items-center justify-center text-center max-w-[800px] w-full mx-auto p-4">
+        <div className="min-h-screen flex flex-col items-center justify-center text-center max-w-[800px] w-full mx-auto p-4">
           <div className="flex flex-col gap-4">
             <h1 className="gap-4 uppercase gap-3  font-semibold text-xs sm:text-xs md:text-xs lg:text-xs py-8">
               Welcome, {user.email}! 
@@ -48,10 +48,10 @@ const Home = () => {
             <p>Accept and Begin</p>
           </button>
           
-          <h2 className="text-lg font-medium py-4">Track your workouts and view your progress below:</h2>
+          <h2 className="text-lg font-medium py-4">Track your workouts and view your progress</h2>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p className="text-center">Loading...</p>
       )}
     </div>
   );
