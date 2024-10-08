@@ -11,9 +11,9 @@ const Navbar = () => {
   const { currentUser } = useAuth(); // Get current user from Auth context
 
   return (
-    <nav className="bg-gradient-to-r text-white py-4">
+    <nav className="bg-gradient-to-r text-white py-6">
       <div className="max-w-screen-xl mx-auto px-4">
-        <ul className="flex flex-col sm:flex-row justify-center gap-8">
+        <ul className="flex flex-col sm:flex-row justify-center gap-24">
           <li>
             <Link to="/" className="text-blue-400 hover:text-blue-500 duration-200">
               Home
