@@ -1,4 +1,3 @@
-// src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
@@ -6,6 +5,7 @@ import Logout from "./components/Logout";
 import Home from "./components/Home"; 
 import Main from "./pages/Main"; // Import the dashboard
 import { AuthProvider, useAuth } from "./context/AuthContext"; // Import AuthProvider
+import PrivateRoute from "./components/PrivateRoute"; // Import the PrivateRoute
 
 const Navbar = () => {
   const { currentUser } = useAuth(); // Get current user from Auth context
@@ -37,11 +37,13 @@ const Navbar = () => {
               </Link>
             </li>
           )}
-          <li>
-            <Link to="/Main" className="text-blue-400 hover:text-blue-500 duration-200">
-              Dashboard
-            </Link>
-          </li>
+          {currentUser && ( // Only show the Dashboard link if the user is signed in
+            <li>
+              <Link to="/Main" className="text-blue-400 hover:text-blue-500 duration-200">
+                Dashboard
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
@@ -58,7 +60,16 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/Main" element={<Main />} />
+
+          {/* Protect the /Main route using PrivateRoute */}
+          <Route
+            path="/Main"
+            element={
+              <PrivateRoute>
+                <Main />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Router>
     </AuthProvider>
