@@ -2,19 +2,25 @@
 import { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // State for loading
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("User signed up successfully!");
-      // Redirect or do something after successful sign-up
+      navigate("/login"); // Redirect to Login page after successful sign-up
     } catch (error) {
-      alert(error.message);
+      alert(error.message); // Handle sign-up errors
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -45,9 +51,12 @@ const SignUp = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-200"
+            disabled={loading} // Disable button during loading
+            className={`w-full p-3 rounded-lg transition duration-200 ${
+              loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+            } text-white`}
           >
-            Sign Up
+            {loading ? "Signing Up..." : "Sign Up"} {/* Change button text during loading */}
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">
