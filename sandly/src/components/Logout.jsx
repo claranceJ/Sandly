@@ -1,4 +1,8 @@
 // src/components/Logout.jsx
+
+//Logout page logic that uses Firebase Auth and useNavigate hook
+
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import { auth } from "../firebase";

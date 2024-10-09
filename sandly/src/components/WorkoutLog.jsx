@@ -1,3 +1,8 @@
+//I'm having a chellenge in fetching workout data from the API while also fetching logged workout from the local storage
+// How do I display both of these simultanously??? TODO
+
+
+
 import { useState } from "react";
 
 const WorkoutLog = ({ addWorkout }) => {

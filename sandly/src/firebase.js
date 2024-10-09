@@ -1,8 +1,11 @@
 // src/firebase.js
+
+//TODO remove API key from production
+
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-// Your Firebase configuration (replace with your project's credentials from the Firebase Console)
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBISOjkjX1hMPdPJObQATwgk4y5Y_BA2qs",
   authDomain: "sandly-a539f.firebaseapp.com",

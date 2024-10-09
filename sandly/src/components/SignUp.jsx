@@ -1,3 +1,7 @@
+//Page for signing up. Uses Firebase Auth and UseNavigate hook.
+// challenged in hiding the Signup Link once the user logs in
+
+
 import { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";

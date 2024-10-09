@@ -1,3 +1,6 @@
+//Component for Fetching Exercices from WGER API
+// I may either use try fetch or axios depending on the complexity
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -16,7 +19,7 @@ const ExerciseApp = () => {
 
     try {
       const response = await axios.get("https://wger.de/api/v2/exercise/");
-      setExercises(response.data.results); // Assuming the API returns the data in 'results'
+      setExercises(response.data.results); // We are Assuming the API returns the data in 'results'
     } catch (err) {
       setError("Failed to fetch exercises. Please try again."); // Set error message
     } finally {
@@ -81,7 +84,7 @@ const ExerciseApp = () => {
           <option value="4">Chest</option>
           <option value="5">Back</option>
           <option value="6">Legs</option>
-          {/* Add more muscle groups as needed */}
+          
         </select>
         <button 
           onClick={fetchExercisesByMuscleGroup} 

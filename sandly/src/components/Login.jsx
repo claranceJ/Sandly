@@ -1,3 +1,6 @@
+//Login page logic that uses Firbase Auth and useNavigate hook
+
+
 import { useState } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";

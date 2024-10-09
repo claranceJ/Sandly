@@ -1,3 +1,7 @@
+//Page for showing workout History
+//the workouts are being passed as props from the Logs
+
+
 const WorkoutHistory = ({ workouts }) => {
   return (
     <div className="my-8">
