@@ -2,6 +2,7 @@ import { useState } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
+import SandlyLanding from "../assets/SandlyLanding.jpg" // Import the image directly
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,9 +28,9 @@ const Login = () => {
         {/* Left side with the workout image */}
         <div className="hidden lg:block w-full lg:w-1/2">
           <img 
-            src="https://files.oaiusercontent.com/file-ss6W0L7BkUNXJ3A4N7FI7EcM?se=2024-10-09T11%3A56%3A33Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Da2cd9792-e06d-4bd1-8dc6-6bc0f2abb76b.webp&sig=NkRZmNMgbRDijo5sA5KV1ikJbYMbOSh1ObjuVnOm16Q%3D" 
+            src={SandlyLanding} // Use the imported image here
             alt="Workout"
-            className=" h-auto "
+            className="w-full h-auto object-cover" // Ensure the image covers the area properly
           />
         </div>
 

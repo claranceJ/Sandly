@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom"; 
+import SandlyLanding from "../assets/SandlyLanding.jpg" // Use default import for the image
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const SignUp = () => {
         setUserLoggedIn(false); // User is not logged in
       }
     });
-    return unsubscribe;
+    return unsubscribe; // Cleanup subscription on unmount
   }, []);
 
   const handleSignUp = async (e) => {
@@ -30,7 +31,7 @@ const SignUp = () => {
       alert("User signed up successfully!");
       navigate("/login"); 
     } catch (error) {
-      alert(error.message); 
+      alert(error.message); // Consider a better UI for displaying errors
     } finally {
       setLoading(false); 
     }
@@ -38,19 +39,19 @@ const SignUp = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-200">
-      {/* Container for image and sign up form */}
+      {/* Container for image and sign-up form */}
       <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-between w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
         
         {/* Left side with the workout image */}
         <div className="hidden lg:block w-full lg:w-1/2">
           <img 
-            src="https://files.oaiusercontent.com/file-ss6W0L7BkUNXJ3A4N7FI7EcM?se=2024-10-09T11%3A56%3A33Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Da2cd9792-e06d-4bd1-8dc6-6bc0f2abb76b.webp&sig=NkRZmNMgbRDijo5sA5KV1ikJbYMbOSh1ObjuVnOm16Q%3D" 
+            src={SandlyLanding} // Use the imported image here
             alt="Workout"
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover" // Ensure the image covers the area properly
           />
         </div>
-
-        {/* Right side with the sign up form */}
+       
+        {/* Right side with the sign-up form */}
         <div className="w-full lg:w-1/2 p-8">
           <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Sign Up</h2>
           <form onSubmit={handleSignUp}>
