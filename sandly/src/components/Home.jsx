@@ -4,6 +4,7 @@ import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
+// The user wont have access of the Home page if not logged in
 const Home = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Home = () => {
         <div className="min-h-screen flex flex-col items-center justify-center text-center max-w-[800px] w-full mx-auto p-4">
           <div className="flex flex-col gap-4">
             <h1 className="gap-4 uppercase gap-3  font-semibold text-xs sm:text-xs md:text-xs lg:text-xs py-8">
-              Welcome, {user.email}! 
+              You have logged in as, <span className="text-blue-400">{user.email}! </span>
             </h1>
 
             <h1 className="gap-4 uppercase gap-3 font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-7xl py-8">
