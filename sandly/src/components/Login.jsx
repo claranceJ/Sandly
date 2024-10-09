@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
-import SandlyLanding from "../assets/SandlyLanding.jpg" // Import the image directly
+import SandlyLanding from "../assets/SandlyLanding.png" // Import the image directly
 
 const Login = () => {
   const [email, setEmail] = useState("");
