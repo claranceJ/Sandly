@@ -44,12 +44,14 @@ const Home = () => {
             </p>
           </div>
 
+          <h2 className="text-lg font-medium py-4">Track your workouts and view your progress</h2>
+
           <button className="px-8 my-8 py-4 rounded-md border-[2px] bg-slate-200 border-blue-400 border-solid blueShadow duration-200"
           onClick={() => navigate("/Main")} >
             <p>Accept and Begin</p>
           </button>
           
-          <h2 className="text-lg font-medium py-4">Track your workouts and view your progress</h2>
+         
         </div>
       ) : (
         <p className="text-center">Loading...</p>
