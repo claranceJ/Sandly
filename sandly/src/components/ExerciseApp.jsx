@@ -1,40 +1,48 @@
-//Component for Fetching Exercices from WGER API
-// I may either use try fetch or axios depending on the complexity
+// Component for Fetching Exercises from WGER API
+// Depending on the complexity, I may use either Fetch API or Axios
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const ExerciseApp = () => {
-  const [exercises, setExercises] = useState([]); // State for storing exercises
-  const [exerciseDetails, setExerciseDetails] = useState(null); // State for selected exercise details
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // Error state
-  const [muscleGroup, setMuscleGroup] = useState(""); // State for selected muscle group
-  const [muscleExercises, setMuscleExercises] = useState([]); // State for exercises by muscle group
+  // State for storing all exercises
+  const [exercises, setExercises] = useState([]);
+  // State for storing details of a selected exercise
+  const [exerciseDetails, setExerciseDetails] = useState(null);
+  // Loading state to show when data is being fetched
+  const [loading, setLoading] = useState(false);
+  // Error message if something goes wrong
+  const [error, setError] = useState("");
+  // State for selected muscle group (e.g., Biceps, Chest)
+  const [muscleGroup, setMuscleGroup] = useState("");
+  // State for storing exercises based on selected muscle group
+  const [muscleExercises, setMuscleExercises] = useState([]);
 
-  // Fetching the list of exercises
+  // Function to fetch the list of exercises from the API
   const fetchExercises = async () => {
-    setLoading(true);
-    setError(""); // Reset error state
+    setLoading(true); // Show loading while fetching
+    setError(""); // Clear any previous error message
 
     try {
+      // Make a request to get the exercises
       const response = await axios.get("https://wger.de/api/v2/exercise/");
-      setExercises(response.data.results); // We are Assuming the API returns the data in 'results'
+      setExercises(response.data.results); // Assuming the API returns data in 'results'
     } catch (err) {
-      setError("Failed to fetch exercises. Please try again."); // Set error message
+      setError("Failed to fetch exercises. Please try again."); // Set error if request fails
     } finally {
-      setLoading(false); // Set loading to false after fetching
+      setLoading(false); // Stop loading whether the request succeeds or fails
     }
   };
 
-  // Fetching exercise details by ID
+  // Function to fetch details for a specific exercise by its ID
   const fetchExerciseDetails = async (id) => {
     setLoading(true);
     setError("");
 
     try {
+      // Fetch specific exercise details
       const response = await axios.get(`https://wger.de/api/v2/exerciseinfo/${id}/`);
-      setExerciseDetails(response.data); // Set details of selected exercise
+      setExerciseDetails(response.data); // Store the details of the selected exercise
     } catch (err) {
       setError("Failed to fetch exercise details. Please try again.");
     } finally {
@@ -42,14 +50,15 @@ const ExerciseApp = () => {
     }
   };
 
-  // Fetching exercises by muscle group
+  // Function to fetch exercises filtered by the selected muscle group
   const fetchExercisesByMuscleGroup = async () => {
-    if (!muscleGroup) return; // Don't fetch if no muscle group is selected
+    if (!muscleGroup) return; // Do nothing if no muscle group is selected
 
     setLoading(true);
     setError("");
 
     try {
+      // Make a request to get exercises based on the selected muscle group
       const response = await axios.get(`https://wger.de/api/v2/exercise/?muscle=${muscleGroup}`);
       setMuscleExercises(response.data.results);
     } catch (err) {
@@ -59,8 +68,9 @@ const ExerciseApp = () => {
     }
   };
 
+  // Fetch all exercises when the component first loads
   useEffect(() => {
-    fetchExercises(); // Fetch exercises on component mount
+    fetchExercises();
   }, []);
 
   return (
@@ -70,11 +80,12 @@ const ExerciseApp = () => {
       {error && <p className="text-red-500 text-center">{error}</p>}
       
       <div className="mb-4">
+        {/* Dropdown to select a muscle group */}
         <label htmlFor="muscleGroup" className="block font-medium">Search by Muscle Group:</label>
         <select
           id="muscleGroup"
           value={muscleGroup}
-          onChange={(e) => setMuscleGroup(e.target.value)}
+          onChange={(e) => setMuscleGroup(e.target.value)} // Update the muscle group state on change
           className="border border-gray-300 p-2 rounded-md w-full"
         >
           <option value="">Select a muscle group</option>
@@ -84,8 +95,8 @@ const ExerciseApp = () => {
           <option value="4">Chest</option>
           <option value="5">Back</option>
           <option value="6">Legs</option>
-          
         </select>
+        {/* Button to trigger fetching exercises based on the selected muscle group */}
         <button 
           onClick={fetchExercisesByMuscleGroup} 
           className="mt-2 bg-blue-500 text-white p-2 rounded-md"
@@ -94,13 +105,15 @@ const ExerciseApp = () => {
         </button>
       </div>
 
+      {/* Displaying the list of exercises filtered by muscle group */}
       {muscleExercises.length > 0 ? (
         <ul className="space-y-4">
           {muscleExercises.map((exercise) => (
             <li key={exercise.id} className="p-4 bg-gray-100 rounded-md shadow-md">
               <h3 className="font-semibold text-lg">{exercise.name}</h3>
+              {/* Button to view detailed information about the selected exercise */}
               <button
-                onClick={() => fetchExerciseDetails(exercise.id)} // Fetch details on button click
+                onClick={() => fetchExerciseDetails(exercise.id)} // Fetch exercise details on click
                 className="mt-2 bg-green-500 text-white p-2 rounded-md"
               >
                 View Details
@@ -112,6 +125,7 @@ const ExerciseApp = () => {
         <p className="text-center">No exercises found for this muscle group.</p>
       )}
 
+      {/* Displaying details of the selected exercise */}
       {exerciseDetails && (
         <div className="mt-8 p-4 bg-gray-200 rounded-md shadow-md">
           <h3 className="text-xl font-bold">{exerciseDetails.name}</h3>

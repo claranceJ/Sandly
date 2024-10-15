@@ -1,6 +1,7 @@
 // src/firebase.js
 
-//TODO remove API key from production
+//TODO 
+// remove API key from production
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
