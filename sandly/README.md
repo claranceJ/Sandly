@@ -5,7 +5,6 @@ Table of Contents
     Features
     Technologies Used
     Getting Started
-    Project Structure
     Challenges and Fixes
     Future Enhancements
     Image(Preview)
@@ -71,23 +70,6 @@ bash
 
     Open your browser and navigate to http://localhost:3000.
 
-Project Structure
-
-php
-
-Sandly/
-├── public/                     # Public assets (images, icons, etc.)
-├── src/                        # Main application source code
-│   ├── components/             # Reusable React components
-│   ├── pages/                  # Application pages (Login, Dashboard, etc.)
-│   ├── App.jsx                 # Main App component
-│   ├── index.css               # Global styles
-│   └── main.jsx                # Application entry point
-├── .gitignore                  # Git ignore file
-├── package.json                # Project metadata and dependencies
-├── tailwind.config.js          # Tailwind CSS configuration
-├── vite.config.js              # Vite configuration
-└── vercel.json                 # Vercel deployment settings
 
 Challenges and Fixes
 1. Route Handling Issue (404 Errors on Page Refresh)
@@ -96,13 +78,6 @@ Challenges and Fixes
 
     Fix: I added a vercel.json configuration file with the fallback option to ensure proper handling of client-side routing. This file ensures that non-root routes are correctly served by Vercel and imported HashRouter:
 
-    json
-
-    {
-      "routes": [
-        { "src": "/(.*)", "dest": "/index.html" }
-      ]
-    }
 
 2. Loss of Authentication State on Refresh
 
@@ -128,7 +103,7 @@ Image
 
 Below is a snapshot of the Sandly Web Application:
 
-![Sandly WebApp](https://imgur.com/a/ly8U5Py)
+https://imgur.com/a/ly8U5Py
 
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
