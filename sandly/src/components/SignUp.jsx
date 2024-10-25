@@ -83,7 +83,7 @@ const SignUp = () => {
                 loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
               } text-white`}
             >
-              {loading ? "Signing Up..." : "Sign Up"} // Conditional button text based on loading state
+              {loading ? "Signing Up..." : "Sign Up"} {/* Conditional button text based on loading state */}
             </button>
           </form>
           
